@@ -26,7 +26,7 @@ A first run can take several minutes while it downloads Android tools and build 
 
 ## Build details
 - Native Kotlin Activity using Android framework widgets (no third-party UI dependencies)
-- Android Gradle Plugin 9.4.0, Gradle 9.6.0, Android API 37 build SDK
+- Android Gradle Plugin 9.4.0, Gradle 9.6.0, Android API 36 build SDK
 - Java 17
 - Target SDK 35, minimum SDK 26
 - GitHub Actions builds with `gradle --no-daemon :app:assembleDebug`

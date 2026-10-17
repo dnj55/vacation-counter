@@ -3,7 +3,7 @@ plugins {
 }
 android {
     namespace = "com.example.vacationcounter"
-    compileSdk = 37
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.vacationcounter"

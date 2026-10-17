@@ -24,7 +24,7 @@ jobs:
 
       # GitHub's Ubuntu runners already provide Android SDK command-line tools.
       # Do not use the obsolete "tools" package, which fails in setup-android@v3.
-      - name: Install Android API 37
+      - name: Install Android API 36
         shell: bash
         run: |
           SDKMANAGER="$(command -v sdkmanager || true)"
@@ -37,7 +37,7 @@ jobs:
           fi
           echo "Using $SDKMANAGER"
           yes | "$SDKMANAGER" --licenses > /dev/null || true
-          "$SDKMANAGER" --install "platforms;android-37" "build-tools;36.0.0" "platform-tools"
+          "$SDKMANAGER" --install "platforms;android-36" "build-tools;36.0.0" "platform-tools"
 
       - name: Set up Gradle 9.6
         uses: gradle/actions/setup-gradle@v4
