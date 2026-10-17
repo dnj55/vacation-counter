@@ -1,36 +1,28 @@
 # Vacation Counter
 
-My first Android app built with AI.
+A native offline Android app developed with ChatGPT and built on GitHub Actions.
 
-This is an experimental, offline-native Android app that counts button taps and saves the count locally between launches.
+## Version 1.1
+- Increment the count with **+ One**.
+- Decrement with **− One** (stops at zero, and the button is disabled at zero).
+- Reset with confirmation.
+- Switch between **light and dark modes**. First launch defaults to the system preference, but your manual choice is remembered.
+- Save both counter and theme preferences between launches, offline, with no special permissions.
 
-## Features
-- **Count one +** increments the counter.
-- **Reset counter** asks for confirmation before clearing it.
-- Local persistence with Android `SharedPreferences`; no network, ads, sign-in, or special permissions.
+## Build and sideload
+1. Open the repository **Actions** tab and choose the latest successful **Build Android APK** run.
+2. Under **Artifacts**, download **vacation-counter-debug-apk**.
+3. Extract the ZIP in Samsung My Files and open **app-debug.apk**.
+4. Authorize the installation source if Android asks. Re-enable Samsung Auto Blocker afterward.
 
-## Build and install from an Android phone
-1. Open this repository's **Actions** tab.
-2. Select **Build Android APK**, then open its latest successful run. If none appears, tap **Run workflow**.
-3. Under **Artifacts**, download `vacation-counter-debug-apk` (a ZIP file).
-4. Extract the ZIP in Samsung **My Files**.
-5. Tap the enclosed `app-debug.apk` to install it. You may need to permit installations from this source or adjust Samsung Auto Blocker to allow sideloading.
+**Upgrading from v1.0:** GitHub-hosted builds may be signed by different temporary Android debug keys. If Android refuses to install v1.1 over v1.0, uninstall v1.0 first. Uninstalling deletes saved counter data. Future builds can use a persistent signing key to allow reliable in-place upgrades; do not commit private signing keys to this public repository.
 
-A first run can take several minutes while it downloads Android tools and build dependencies.
+## Test
+1. Increment to 7, decrement twice, and verify 5.
+2. At 0, verify decrement is disabled.
+3. Switch themes and verify text, background, buttons, and reset confirmation dialog change.
+4. Close and reopen; check the count and theme are retained.
+5. Cancel reset (unchanged); confirm reset (zero).
 
-## Acceptance test
-1. Tap **Count one +** ten times.
-2. Close and reopen the app: the count should still be 10.
-3. Tap **Reset counter** and then **Cancel**: it should remain 10.
-4. Confirm a reset: the count should return to 0.
-
-## Build details
-- Native Kotlin Activity using Android framework widgets (no third-party UI dependencies)
-- Android Gradle Plugin 9.4.0, Gradle 9.6.0, Android API 36 build SDK
-- Java 17
-- Target SDK 35, minimum SDK 26
-- GitHub Actions builds with `gradle --no-daemon :app:assembleDebug`
-
-**Note:** GitHub-hosted debug builds may have different debug signing keys between runs. If Android refuses a subsequent APK update because the signing key is different, uninstalling the earlier app before installing the new APK will usually resolve it, but will erase the locally saved count. For reliable updates, a persistent signing key would be needed.
-
-This is an initial experiment; the APK must first be compiled by GitHub Actions, not from this chat.
+## Build environment
+Kotlin, native Android widgets, Android Gradle Plugin 9.4.0, Gradle 9.6.0, Android API 36, JDK 17.
